@@ -1,0 +1,3 @@
+Module name: mux. Ports: input a, input b, input sel, output out (all 1 bit).
+A combinational 2-to-1 multiplexer with no clock. When sel is 0, out equals a.
+When sel is 1, out equals b. out must change immediately whenever a, b or sel changes.

@@ -1,0 +1,1 @@
+Module name: counter. Ports: input clk, input rst, input en, output reg [3:0] count. A decade counter that updates on the rising edge of clk. If rst is high, count becomes 0 (synchronous, active-high). Otherwise, if en is high, count increments, wrapping from 9 to 0. If en is low, count holds its value.
