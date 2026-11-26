@@ -15,7 +15,7 @@ def build_prompt(spec):
             "Verilog-2001. Use exactly the module name and ports given. Do not include a testbench "
             "or any explanation, just the code in one code block.\n\n" + spec)
 
-def ask_ollama(model, prompt):
+def ask_ollama(model, temp, prompt):
     response = ol.chat (
         model=model,
         messages = [
@@ -29,11 +29,11 @@ def ask_ollama(model, prompt):
             },
         ],
         options = {
-            'temperature':0.2,
+            'temperature':temp,
         }
     )
 
-    return [response.message.content, response.prompt_eval_count + response.eval_count, response.total_duration / 1e9]
+    return response.message.content, response.prompt_eval_count + response.eval_count, response.total_duration / 1e9
 
 
 def extract_verilog(reply):
