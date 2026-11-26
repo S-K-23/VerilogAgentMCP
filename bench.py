@@ -21,7 +21,7 @@ def ask_ollama(model, temp, prompt):
         messages = [
             {
                 'role' :'system',
-                'content':'You are a Verilog expert who write in Verilog-2001',
+                'content':'You are a Verilog expert who writes  in Verilog-2001',
             },
             {
                 'role' :'user',
@@ -42,6 +42,8 @@ def extract_verilog(reply):
 
 
 def run_testbench(module, code):
+    if code is None:
+        return 'NO_CODE'
     with tempfile.TemporaryDirectory() as tmp:
         design = Path(tmp) / f"{module}.v"
         sim = Path(tmp) / "sim"
@@ -59,3 +61,5 @@ def run_testbench(module, code):
         if "PASS" in run.stdout.splitlines():
             return "PASS", run.stdout
         return "FAIL", run.stdout
+
+
